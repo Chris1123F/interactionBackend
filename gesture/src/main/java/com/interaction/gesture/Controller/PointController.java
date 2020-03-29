@@ -12,10 +12,4 @@ public class PointController {
     public String addPoint(@RequestParam String projectName) {
         return JSON.toJSONString("result");
     }
-
-
-    @RequestMapping("/openProject")
-    public String openProject(@RequestParam String projectName) {
-        return JSON.toJSONString("result");
-    }
 }

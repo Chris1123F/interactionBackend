@@ -2,6 +2,7 @@ package com.interaction.gesture.Controller;
 
 import com.interaction.gesture.Entry.Project;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
@@ -84,5 +85,18 @@ public class ProcessController {
         }
         Project project = new Project(nameString, versionString, publisherString, uninstallPathString);
         return project;
+    }
+
+
+    @RequestMapping("/openProject")
+    public String openProject(@RequestParam String projectPath) {
+        Runtime runtime = Runtime.getRuntime();
+        Process p = null;
+        try {
+            p = runtime.exec(projectPath);
+        } catch (Exception e) {
+            System.out.println("open failure");
+        }
+        return JSON.toJSONString("result");
     }
 }
